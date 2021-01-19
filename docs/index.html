@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reloj-CSS-JavaScript</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript">
+		function reloj_movi(){
+			var fecha = new Date();
+			var horas = fecha.getHours();// retorna la hora de la fecha especificada, de acuerdo a la hora local.
+			var minutos = fecha.getMinutes();// devuelve los minutos de la fecha especificada en función de la hora local.
+			var segundos = fecha.getSeconds(); //evuelve los segundos en la fecha especificada de acuerdo a la hora local
+
+			if(horas>=12){
+				accion_horas = horas / 12 * 360; //(horas / los 12 numero * 360 vueltas)
+			}else{
+				accion_horas = horas / 24 * 360; //(horas / los 12 numero * 360 vueltas)
+			}
+			accion_horas += minutos / 60 * 30;
+			accion_minutos = minutos / 60  * 360;
+			accion_segundos = segundos / 60 * 360;
+
+			//llamos la propiedad transform desde el javascritp
+			document.getElementById("horas").style.transform = "rotate("+ accion_horas +"deg)";
+			document.getElementById("minutos").style.transform = "rotate("+ accion_minutos +"deg)";
+			document.getElementById("segundos").style.transform = "rotate("+ accion_segundos +"deg)";
+		}
+
+		//llamamos la funcion cada 1000 segundos
+		setInterval(reloj_movi,1000);
+
+	</script>
+</head>
+<body>
+		<div>
+			<div class="reloj">
+				<img src="aguja.png" id="horas">
+				<img src="minutos.png" id="minutos">
+				<img src="segundos.png" id="segundos">
+			</div>
+		</div>
+</body>
+</html>
